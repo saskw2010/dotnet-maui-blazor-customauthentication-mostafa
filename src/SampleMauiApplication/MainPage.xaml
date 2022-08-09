@@ -1,15 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Microsoft.AspNetCore.Components.WebView.Maui;assembly=Microsoft.AspNetCore.Components.WebView.Maui"
              xmlns:local="clr-namespace:SampleMauiApplication"
+             xmlns:localorg="clr-namespace:SampleMauiApplication.Pages"
              x:Class="SampleMauiApplication.MainPage"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource PageBackgroundColor}" FlowDirection="RightToLeft">
+    
+        <Shell FlyoutBehavior="Flyout"  
+               FlyoutHeaderBehavior="CollapseOnScroll" 
+               FlyoutBackgroundImageAspect="AspectFill" 
+               FlowDirection="RightToLeft" 
+               FlyoutBackgroundImage="reservationicon.svg" 
+               Padding="10,0,0,0"  
+               IconImageSource="reservationicon.svg"
+               Shell.TabBarIsVisible="true"
+               FlyoutBackgroundColor="AliceBlue"
+               Shell.NavBarIsVisible="true">
+        <FlyoutItem Title="Two" FlyoutIcon="{StaticResource IconTwo}">
+            <ShellContent Title="Two">
+                <ShellContent.ContentTemplate Icon="settingmobile.svg">
+                    <DataTemplate>
+                        <ContentPage>
+                            <BlazorWebView HostPage="wwwroot/index.html">
+                                <BlazorWebView.RootComponents>
+                                    <RootComponent Selector="#app" ComponentType="{x:Type localorg:Counter}" />
+                                </BlazorWebView.RootComponents>
+                            </BlazorWebView>
+                        </ContentPage>
+                    </DataTemplate>
+                </ShellContent.ContentTemplate>
+            </ShellContent>
+        </FlyoutItem>
 
+    </Shell>
+
+    <ContentPage Title="الداعين">
+        
     <b:BlazorWebView HostPage="wwwroot/index.html">
         <b:BlazorWebView.RootComponents>
             <b:RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
         </b:BlazorWebView.RootComponents>
     </b:BlazorWebView>
+ </ContentPage>
+    <ContentPage Title="الداعين">
+        <b:BlazorWebView HostPage="wwwroot/index.html">
+            <b:BlazorWebView.RootComponents>
+                <b:RootComponent Selector="#app" ComponentType="{x:Type localorg:FetchData}" />
+            </b:BlazorWebView.RootComponents>
+        </b:BlazorWebView>
+    </ContentPage>
+</TabbedPage>
 
-</ContentPage>
+     
+     
+ 
